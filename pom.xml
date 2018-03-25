@@ -58,6 +58,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>AtmLocator</finalName>
+		<finalName>backbase-exercise</finalName>
 	</build>
 </project>
