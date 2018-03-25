@@ -1,6 +1,6 @@
 # backbase-exercise
 backbase-exercise is spring-java web MVC project:
-1) This application has two REST API services:
+1) This application has one REST API services:
 ATM Locator
 ```
 This service lists down all the ATM locations for a given city
@@ -104,11 +104,11 @@ Design Consideration:
 ```
 Implemented using teh RESTful architecture principles.
 Added Basic Authentication as a security mechanism.
-Implemented a reusable object model, which can work for any any other bank.
+Implemented a reusable object model, which can work for any other bank.
 ```
 Improvements:
 ```
-Could have decoupled the data source unsing routing mechanism( could have been Apache Camel or MuleSoft)
+Could have decoupled the data source unsing routing mechanism( using Apache Camel or MuleSoft)
 Could not finish Exception Handling due to lack of time.
 Could have also added some Junit test cases.
 ```
