@@ -99,48 +99,16 @@ Copy the war and place it under the webapp directory of your Tomcat instance.
 Start your Tomcat Server.
 ```
 
-Challenges:
-There were a couple of challenges I faced while doing this project:
-1) Data transformation of the web service GetCitiesByCountry
+Design Consideration:
+
 ```
-The Response GetCitiesByCountryResponse was a String intead of XML object, which was difficult to parse. 
-To overcome it :
-I wrote a groovy script to convert the string to a DOM object and then used 
-MULE's DOMTOXML transformer to make it a proper XML. 
-And Finally tranforming the XML to JSON as per my API's response.
-
-Alternative:
-Could have been also parsed through dataweave if I would have investigate more.
-```
-2) Dockerising the actual service and the mock service
-```
-Since the GetWeather webservice was not working, I had to write a simple mock service 
-and call the service in my weather-raml-exercise instead of actual service.
-
-The Problem was how to deploy bot the application in a docker container:
-
-I tried deploying both the apps in one docker container but could not control the order of deployment, 
-which cause the weather-raml-exercise app to Fail because it was dependent on "mock-weather-app".
-And the container was first deploying weather-raml-exercise and then "mock-weather-app" 
-later which caused Connection Refused error becuause it could not find the mock web service.
-
-To overcome it:
-I decided to deploy the mock service in a separate docker container.
-
-and then deploy the weather-raml-exercise in separate container but to share the 
-network of the mock container so that it can access the mock web service.
-
-To achieve it I used the following docker command:
-docker run --network container:muleMock -it --name muleService mule-container
-
+Implemented using teh RESTful architecture principles.
+Added Basic Authentication as a security mechanism.
+Implemented a reusable object model, which can work for any any other bank.
 ```
 Improvements:
 ```
-1) Could have imporoved the Exception Handling of the project by defining a global exception strategy 
-   and using it in all the flows.
-2) If time permitted could have added unit test cases to app.
-3) Made the mock webservice an exact replica of the actual webservice, which will reduce changes 
-   to the app when the actual webservice is up and running.
-```
-
-I really enjoyed doing this exercis and learnt a lot about docker.
+Could have decoupled the data source unsing routing mechanism( could have been Apache Camel or MuleSoft)
+Could not finish Exception Handling due to lack of time.
+Could have also added some Junit test cases.
+``
